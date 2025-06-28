@@ -19,7 +19,7 @@ const nextConfig = {
   
   // Environment variables that should be available on the client
   env: {
-    NEXTAUTH_URL: "https://budget-pi-ten.vercel.app"
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL
   },
   
   // Webpack optimization

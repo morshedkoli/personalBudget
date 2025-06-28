@@ -2,6 +2,11 @@
   "buildCommand": "npx prisma generate && npx prisma db push && next build",
   "installCommand": "npm install && npx prisma generate",
   "framework": "nextjs",
+  "env": {
+    "DATABASE_URL": "$DATABASE_URL",
+    "NEXTAUTH_SECRET": "$NEXTAUTH_SECRET",
+    "NEXTAUTH_URL": "$NEXTAUTH_URL"
+  },
   "functions": {
     "app/api/**/*.js": {
       "maxDuration": 30

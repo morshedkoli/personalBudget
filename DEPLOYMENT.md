@@ -12,8 +12,8 @@
 ### ✅ Configuration Files
 - [x] `vercel.json` - Vercel deployment configuration
 - [x] `next.config.mjs` - Next.js optimizations for production
-- [x] `.env.example` - Environment variables template
-- [x] `.env.production` - Production environment template
+- [x] `.env` - Main environment variables file (production ready)
+- [x] `.env.example` - Environment variables template for setup
 - [x] `.gitignore` - Proper exclusions for sensitive files
 
 ### ✅ Database Setup
