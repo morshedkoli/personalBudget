@@ -1,38 +1,37 @@
-# Personal Budget Tracker
+# Personal Budget Dashboard
 
-A modern, responsive personal budget tracking application built with Next.js, MongoDB, and Prisma.
+A comprehensive personal finance management application built with Next.js, featuring expense tracking, income management, liabilities monitoring, and receivables & assets management.
 
 ## Features
 
-- **Expense Tracking**: Add, view, and manage your expenses with categories
-- **Income Management**: Track multiple income sources and types
-- **Liability Tracking**: Monitor debts, loans, and other liabilities
-- **Real-time Dashboard**: Visual overview of your financial status
-- **Dark Mode Support**: Toggle between light and dark themes
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **Database Persistence**: All data is stored in MongoDB using Prisma ORM
+- 📊 **Dashboard Overview**: Real-time financial summary with charts and statistics
+- 💰 **Expense Tracking**: Categorized expense management with visual analytics
+- 💵 **Income Management**: Track multiple income sources and categories
+- 🏦 **Liabilities**: Monitor debts, loans, and financial obligations
+- 📈 **Receivables & Assets**: Track outstanding payments and asset portfolio
+- 📱 **Responsive Design**: Mobile-friendly interface with modern UI
+- 🔒 **Secure**: Built with security best practices
 
 ## Tech Stack
 
-- **Frontend**: Next.js 15, React, Tailwind CSS
+- **Frontend**: Next.js 15, React 19, Tailwind CSS
 - **Backend**: Next.js API Routes
 - **Database**: MongoDB with Prisma ORM
-- **Styling**: Tailwind CSS with custom components
-- **Icons**: Lucide React
+- **Deployment**: Optimized for Vercel
 
-## Prerequisites
+## Getting Started
 
-Before running this application, make sure you have:
+### Prerequisites
 
-- Node.js (v18 or higher)
-- MongoDB installed locally or access to MongoDB Atlas
-- npm or yarn package manager
+- Node.js 18+ 
+- MongoDB database (local or MongoDB Atlas)
+- npm or yarn
 
-## Installation
+### Local Development
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone <your-repo-url>
    cd personalbudget
    ```
 
@@ -42,34 +41,83 @@ Before running this application, make sure you have:
    ```
 
 3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
    
-   The `.env` file should contain:
-   ```env
-   DATABASE_URL="mongodb://localhost:27017/personalbudget"
-   NEXTAUTH_SECRET="your-secret-key"
-   NEXTAUTH_URL="http://localhost:3000"
-   ```
-
-   **For MongoDB Atlas (cloud):**
-   ```env
-   DATABASE_URL="mongodb+srv://username:password@cluster.mongodb.net/personalbudget"
-   ```
+   Fill in your environment variables:
+   - `DATABASE_URL`: Your MongoDB connection string
+   - `NEXTAUTH_SECRET`: Random secret for authentication
+   - `NEXTAUTH_URL`: Your application URL
 
 4. **Set up the database**
    ```bash
-   # Generate Prisma client
-   npx prisma generate
-   
-   # Push the schema to MongoDB (creates collections)
-   npx prisma db push
+   npm run db:push
+   npm run db:seed
    ```
 
-5. **Start the development server**
+5. **Run the development server**
    ```bash
    npm run dev
    ```
 
-   The application will be available at `http://localhost:3000`
+   Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+## Deployment on Vercel
+
+### Quick Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/personalbudget)
+
+### Manual Deployment
+
+1. **Push your code to GitHub**
+
+2. **Connect to Vercel**
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Click "New Project"
+   - Import your GitHub repository
+
+3. **Configure Environment Variables**
+   
+   In your Vercel project settings, add these environment variables:
+   
+   ```
+   DATABASE_URL=mongodb+srv://username:password@cluster.mongodb.net/database
+   NEXTAUTH_SECRET=your-random-secret-here
+   NEXTAUTH_URL=https://your-app-name.vercel.app
+   ```
+
+4. **Deploy**
+   
+   Vercel will automatically:
+   - Install dependencies
+   - Generate Prisma client
+   - Push database schema
+   - Build the application
+   - Deploy to production
+
+### Environment Variables Setup
+
+| Variable | Description | Example |
+|----------|-------------|---------||
+| `DATABASE_URL` | MongoDB connection string | `mongodb+srv://user:pass@cluster.mongodb.net/db` |
+| `NEXTAUTH_SECRET` | Secret for NextAuth.js | Generate with `openssl rand -base64 32` |
+| `NEXTAUTH_URL` | Your application URL | `https://your-app.vercel.app` |
+
+### Database Setup for Production
+
+1. **MongoDB Atlas** (Recommended)
+   - Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/atlas)
+   - Get your connection string
+   - Add it to Vercel environment variables
+
+2. **Database Migration**
+   
+   The deployment process automatically:
+   - Generates Prisma client
+   - Pushes schema to database
+   - Seeds initial data (categories)
 
 ## Database Setup
 
