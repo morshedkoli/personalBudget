@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Expense {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  amount      Float
+  category    String
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Income {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  source    String
+  amount    Float
+  type      String
+  recurring Boolean  @default(false)
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Liability {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  creditor       String
+  amount         Float
+  monthlyPayment Float
+  dueDate        DateTime
+  status         String
+  type           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model ExpenseCategory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  color     String?  // Optional color for UI display
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model IncomeCategory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  color     String?  // Optional color for UI display
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Receivable {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  amount      Float
+  dueDate     DateTime
+  status      String   @default("scheduled") // scheduled, due-soon, overdue, paid
+  client      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Asset {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  category     String   // Stocks, Real Estate, Cash, Other
+  value        Float
+  purchaseDate DateTime
+  status       String   @default("active") // active, sold, deprecated
+  description  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
